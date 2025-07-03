@@ -51,16 +51,18 @@ a.btn:hover, button:hover {
 }
 
 #modal-content {
-  background-color: #gold;
+  background-color: white;
+  color: black;
   margin: 15% auto;
   padding: 30px;
   border: 3px solid gold;
   width: 80%;
   max-width: 400px;
-  color: black;
   text-align: center;
   border-radius: 12px;
   font-size: 1.5rem;
+}
+
 }
 
 #modal-close {
