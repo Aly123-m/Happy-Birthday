@@ -1,14 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Music</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<h1>📷 Music</h1>
-<p>Memories go here!</p>
-<a href="index.html" class="btn footer-btn">← Back Home</a>
-</body>
-</html>
+body {
+  background-color: #A0153E;
+  color: gold;
+  font-family: 'Playfair Display', 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', 'Merriweather', serif;
+  color: gold;
+}
+
+a.btn, button {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 25px;
+  background: gold;
+  color: #A0153E;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+a.btn:hover, button:hover {
+  background: #ffd700;
+  box-shadow: 0 0 15px gold, 0 0 30px gold;
+  color: #A0153E;
+}
+
+footer {
+  margin-top: auto;
+  padding: 20px;
+  color: gold;
+  font-size: 1rem;
+}
+
+.sparkle {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  background: gold;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall 5s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}

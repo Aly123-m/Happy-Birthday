@@ -1,63 +1,107 @@
 body {
-  background: linear-gradient(135deg, #000000, #660000); /* black to dark red */
+  background-color: #A0153E;
   color: gold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  padding: 30px;
-  min-height: 100vh;
+  font-family: 'Playfair Display', 'Merriweather', serif;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-shadow: 1px 1px 3px #b8860b; /* gold shadow */
+h1, h2, h3 {
+  font-family: 'Playfair Display', 'Merriweather', serif;
+  color: gold;
 }
 
-p {
-  font-size: 1.3rem;
-  margin-bottom: 40px;
+p, li, a, button {
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-}
-
-.btn {
-  background: linear-gradient(45deg, #b8860b, #ffcc00);
-  color: black;
-  padding: 15px 25px;
-  border-radius: 12px;
+a.btn, button {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 25px;
+  background: gold;
+  color: #A0153E;
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-weight: 700;
-  box-shadow: 0 0 8px #b8860b;
+  font-weight: bold;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #ffd700;
+a.btn:hover, button:hover {
+  background: #ffd700;
+  box-shadow: 0 0 15px gold, 0 0 30px gold;
+  color: #A0153E;
 }
 
-html, body {
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+#modal-content {
+  background-color: #111;
+  margin: 15% auto;
+  padding: 30px;
+  border: 3px solid gold;
+  width: 80%;
+  max-width: 400px;
+  color: gold;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1.5rem;
+}
+
+#modal-close {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: gold;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
-.footer-btn {
+footer {
   margin-top: auto;
-  margin-bottom: 20px;
-  display: inline-block;
+  padding: 20px;
+  color: gold;
+  font-size: 1rem;
+}
+
+.sparkle {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  background: gold;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall 5s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }

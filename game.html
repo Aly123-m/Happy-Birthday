@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Birthday Arcade</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,5 +23,21 @@
     <a href="index.html" class="btn footer-btn">← Back Home</a>
 
   </div>
+
+  <footer>Made with ❤️ for Anna’s 18th birthday.</footer>
+
+  <script>
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      sparkle.style.animationDuration = (2 + Math.random() * 3) + 's';
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => sparkle.remove(), 5000);
+    }
+    setInterval(createSparkle, 300);
+  </script>
 </body>
 </html>
