@@ -1,15 +1,19 @@
 body {
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
-  color: white;
+  background: linear-gradient(135deg, #000000, #660000); /* black to dark red */
+  color: gold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding: 30px;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
   font-size: 3rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 5px #000;
+  text-shadow: 1px 1px 3px #b8860b; /* gold shadow */
 }
 
 p {
@@ -22,20 +26,38 @@ p {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .btn {
-  background: #ff6ec4;
-  background: linear-gradient(45deg, #ff6ec4, #7873f5);
-  color: white;
+  background: linear-gradient(45deg, #b8860b, #ffcc00);
+  color: black;
   padding: 15px 25px;
   border-radius: 12px;
   text-decoration: none;
   font-size: 1.2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 700;
+  box-shadow: 0 0 8px #b8860b;
 }
 
 .btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 20px #ffd700;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer-btn {
+  margin-top: auto;
+  margin-bottom: 20px;
+  display: inline-block;
 }

@@ -20,17 +20,49 @@
     font-size: 2rem;
     margin: 20px;
   }
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 </style>
 </head>
 <body>
+  <div class="container">
 
-<h1>🍰 Click the Cake!</h1>
-<p id="score">Score: 0</p>
-<a href="game.html" class="btn">← Back to Games</a>
+    <h1>🍰 Click the Cake!</h1>
+    <p id="score">Score: 0</p>
 
-<script>
-let score = 0;
+    <a href="game.html" class="btn footer-btn">← Back to Games</a>
 
-function spawnCake() {
-  let cake = document.createElement('img');
-  cake.src = "https://emoji.slack-edge.com/T02H84V2L/cake/0f9a9e062f63f4e3.pn
+    <script>
+      let score = 0;
+
+      function spawnCake() {
+        let cake = document.createElement('img');
+        cake.src = "https://twemoji.maxcdn.com/v/latest/72x72/1f370.png";
+        cake.className = "cake";
+        cake.style.left = Math.random() * 90 + "vw";
+        cake.style.top = Math.random() * 80 + "vh";
+        
+        cake.onclick = function() {
+          score++;
+          document.getElementById('score').textContent = "Score: " + score;
+          cake.remove();
+        }
+
+        document.body.appendChild(cake);
+
+        setTimeout(() => {
+          if (document.body.contains(cake)) {
+            cake.remove();
+          }
+        }, 2000);
+      }
+
+      setInterval(spawnCake, 800);
+    </script>
+
+  </div>
+</body>
+</html>
