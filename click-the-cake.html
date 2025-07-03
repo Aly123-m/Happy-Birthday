@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🍰 Click the Cake Game</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .cake {
+    position: fixed;
+    width: 60px;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s;
+  }
+  .cake:active {
+    transform: scale(0.8);
+  }
+  #score {
+    font-size: 2rem;
+    margin: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🍰 Click the Cake!</h1>
+<p id="score">Score: 0</p>
+<a href="game.html" class="btn">← Back to Games</a>
+
+<script>
+let score = 0;
+
+function spawnCake() {
+  let cake = document.createElement('img');
+  cake.src = "https://emoji.slack-edge.com/T02H84V2L/cake/0f9a9e062f63f4e3.pn
