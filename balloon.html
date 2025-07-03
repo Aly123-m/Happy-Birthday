@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>🎈 Balloon Pop</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
   body {
     margin: 0;
     background-color: #A0153E;
     font-family: 'Playfair Display', serif;
     color: black;
-    overflow: hidden;
+    overflow-x: hidden;
     text-align: center;
   }
   h1 {
@@ -29,7 +26,7 @@
     position: relative;
     width: 100vw;
     height: 80vh;
-    overflow: hidden;
+    overflow: visible; /* important */
     background: linear-gradient(to top, #320000 0%, #A0153E 100%);
     border: 4px solid gold;
     border-radius: 20px;
@@ -38,7 +35,7 @@
   }
   .balloon {
     position: absolute;
-    bottom: -100px;
+    bottom: -80px;
     width: 60px;
     height: 80px;
     border-radius: 50% 50% 50% 50%;
@@ -49,12 +46,10 @@
   .balloon:active {
     transform: scale(0.8);
   }
-  /* Balloon colors */
   .red { background: #ff4d4d; }
   .black { background: #222; }
   .gold { background: gold; }
 
-  /* Modal */
   #modal {
     display: none;
     position: fixed;
@@ -84,7 +79,6 @@
     cursor: pointer;
     border-radius: 8px;
   }
-
   a.btn {
     display: inline-block;
     margin-bottom: 30px;
@@ -98,6 +92,7 @@
 </style>
 </head>
 <body>
+
 <h1>🎈 Balloon Pop</h1>
 <p id="score">Popped: 0</p>
 
@@ -149,12 +144,69 @@
   }
 
   function createBalloon() {
-    if(popped >= target) return;
+    if (popped >= target) return;
 
     const balloon = document.createElement('div');
     balloon.className = 'balloon ' + balloonColors[Math.floor(Math.random() * balloonColors.length)];
     balloon.style.left = Math.random() * (gameArea.clientWidth - 60) + 'px';
+    balloon.style.bottom = '-80px';
 
-    let speed = 4000 + Math.random() * 3000; // Balloon float duration
+    gameArea.appendChild(balloon);
 
-    gameArea.appendChild
+    let speed = 4000 + Math.random() * 3000; // balloon float duration
+
+    let start = null;
+    function float(timestamp) {
+      if (!start) start = timestamp;
+      let progress = timestamp - start;
+      let percent = progress / speed;
+      if (percent < 1) {
+        balloon.style.bottom = (percent * (gameArea.clientHeight + 100)) + 'px';
+        requestAnimationFrame(float);
+      } else {
+        balloon.remove();
+      }
+    }
+    requestAnimationFrame(float);
+
+    balloon.addEventListener('click', () => {
+      if (popped >= target) return;
+
+      popped++;
+      scoreDisplay.textContent = `Popped: ${popped}`;
+      balloon.style.transition = 'transform 0.3s, opacity 0.3s';
+      balloon.style.transform = 'scale(0) rotate(90deg)';
+      balloon.style.opacity = '0';
+
+      setTimeout(() => balloon.remove(), 300);
+
+      if (popped === target) {
+        launchConfetti();
+        birthdaySound.play();
+        modal.style.display = 'block';
+      }
+    });
+  }
+
+  const balloonInterval = setInterval(() => {
+    if (popped >= target) {
+      clearInterval(balloonInterval);
+      return;
+    }
+    createBalloon();
+  }, 800);
+
+  modalClose.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+</script>
+
+</body>
+</html>
+
