@@ -1,184 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🃏 Memory Flip Card Game</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background-color: #A0153E;
-      color: black;
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-      margin: 0;
-      padding: 0 20px;
-    }
-    h1 {
-      margin-top: 20px;
-    }
-    .game-board {
-      max-width: 600px;
-      margin: 30px auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      perspective: 1000px;
-    }
-    .card {
-      width: 100%;
-      padding-top: 100%; /* square */
-      position: relative;
-      cursor: pointer;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      background-color: #f0e68c;
-      user-select: none;
-      transform-style: preserve-3d;
-      transition: transform 0.5s;
-    }
-    .card.flipped {
-      transform: rotateY(180deg);
-      cursor: default;
-    }
-    .card .front, .card .back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      backface-visibility: hidden;
-      top: 0; left: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-    }
-    .card .front {
-      background-color: #333;
-      color: white;
-    }
-    .card .back {
-      background-color: #f0e68c;
-      color: #333;
-      transform: rotateY(180deg);
-    }
-    #message {
-      font-size: 1.5rem;
-      margin-top: 20px;
-      min-height: 30px;
-      font-weight: bold;
-    }
-    a.btn {
-      display: inline-block;
-      margin: 30px auto;
-      padding: 10px 25px;
-      background: gold;
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 12px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🃏 Memory Flip Card</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    background-color: #A0153E;
+    color: black;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin: 0;
+    padding: 0 20px;
+  }
+  h1 {
+    margin-top: 20px;
+  }
+  .game-board {
+    max-width: 600px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    perspective: 1000px;
+    border: 4px solid gold;
+    border-radius: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .card {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+    background-color: #f0e68c;
+    user-select: none;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  .card.flipped {
+    transform: rotateY(180deg);
+    cursor: default;
+  }
+  .card:active {
+    transform: scale(0.95) rotateY(180deg);
+    transition: transform 0.1s;
+  }
+  .card .front, .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    top: 0; left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  .card .front {
+    background-color: #333;
+    color: white;
+  }
+  .card .back {
+    background-color: #f0e68c;
+    color: #333;
+    transform: rotateY(180deg);
+  }
+
+  /* Modal styles */
+  #modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+  }
+  #modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 30px;
+    border: 4px solid gold;
+    width: 80%;
+    max-width: 400px;
+    color: black;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+  }
+  #modal-close {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: gold;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  a.btn {
+    display: inline-block;
+    margin: 30px auto;
+    padding: 12px 30px;
+    background: gold;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 14px;
+  }
+</style>
 </head>
 <body>
+  <h1>🎉 Memory Flip Card</h1>
 
-  <h1>🃏 Memory Flip Card</h1>
+  <div class="game-board" id="game-board"></div>
 
-  <div class="game-board" id="gameBoard"></div>
-
-  <div id="message"></div>
+  <div id="modal">
+    <div id="modal-content">
+      <p>🏆 Congratulations Anna!</p>
+      <p>You've mastered the birthday memory game! 🎂</p>
+      <p>May your 18th year be filled with love, surprises & joy. 🎉</p>
+      <button id="modal-close">Close</button>
+    </div>
+  </div>
 
   <a href="game.html" class="btn">← Back to Games</a>
 
   <script>
-    const cardsArray = [
-      '🍰', '🍰',
-      '🎈', '🎈',
-      '💖', '💖',
-      '🎉', '🎉',
-      '🎂', '🎂',
-      '🎁', '🎁',
-      '🎶', '🎶',
-      '🍬', '🍬'
-    ];
+    const emojis = ["🎂", "🎁", "🎈", "🎉", "💖", "🍬"];
+    let cards = [...emojis, ...emojis];
+    cards.sort(() => 0.5 - Math.random());
 
-    let gameBoard = document.getElementById('gameBoard');
+    const board = document.getElementById('game-board');
     let firstCard = null;
     let secondCard = null;
-    let lockBoard = false;
+    let lock = false;
     let matches = 0;
 
-    // Shuffle the cards
-    function shuffle(array) {
-      for (let i = array.length -1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
+    const birthdaySound = new Audio('https://cdn.pixabay.com/download/audio/2022/03/26/audio_682eecb7ef.mp3?filename=happy-birthday-song-13667.mp3');
 
-    function createBoard() {
-      const shuffledCards = shuffle(cardsArray.slice());
-      shuffledCards.forEach((symbol, index) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.dataset.symbol = symbol;
-
-        card.innerHTML = `
-          <div class="front">?</div>
-          <div class="back">${symbol}</div>
-        `;
-
-        card.addEventListener('click', flipCard);
-        gameBoard.appendChild(card);
-      });
-    }
-
-    function flipCard() {
-      if(lockBoard) return;
-      if(this === firstCard) return;
-
-      this.classList.add('flipped');
-
-      if(!firstCard) {
-        firstCard = this;
-        return;
-      }
-
-      secondCard = this;
-      checkForMatch();
-    }
-
-    function checkForMatch() {
-      const isMatch = firstCard.dataset.symbol === secondCard.dataset.symbol;
-
-      if(isMatch) {
-        matches++;
-        firstCard.removeEventListener('click', flipCard);
-        secondCard.removeEventListener('click', flipCard);
-        resetBoard();
-
-        if(matches === cardsArray.length / 2) {
-          document.getElementById('message').textContent = '🎉 You won! Happy Birthday Anna! 🎉';
-        }
-      } else {
-        lockBoard = true;
+    function launchConfetti() {
+      for (let i = 0; i < 150; i++) {
+        let confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        confetti.style.opacity = '0.9';
+        confetti.style.transition = 'top 3s ease-out, transform 3s';
+        document.body.appendChild(confetti);
+        
         setTimeout(() => {
-          firstCard.classList.remove('flipped');
-          secondCard.classList.remove('flipped');
-          resetBoard();
-        }, 1000);
+          confetti.style.top = '100vh';
+          confetti.style.transform = `rotate(${Math.random() * 720}deg)`;
+        }, 100);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 3200);
       }
     }
 
-    function resetBoard() {
-      [firstCard, secondCard] = [null, null];
-      lockBoard = false;
-    }
+    cards.forEach(emoji => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.emoji = emoji;
 
-    createBoard();
+      const front = document.createElement('div');
+      front.className = 'front';
+      front.textContent = '?';
+
+      const back = document.createElement('div');
+      back.className = 'back';
+      back.textContent = emoji;
+
+      card.appendChild(front);
+      card.appendChild(back);
+
+      card.addEventListener('click', () => {
+        if (lock || card.classList.contains('flipped')) return;
+        card.classList.add('flipped');
+        if (!firstCard) {
+          firstCard = card;
+        } else {
+          secondCard = card;
+          lock = true;
+          if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+            firstCard = null;
+            secondCard = null;
+            lock = false;
+            matches++;
+            if (matches === 6) {
+              // Show modal, confetti, play sound
+              document.getElementById('modal').style.display = 'block';
+              launchConfetti();
+              birthdaySound.play();
+            }
+          } else {
+            setTimeout(() => {
+              firstCard.classList.remove('flipped');
+              secondCard.classList.remove('flipped');
+              firstCard = null;
+              secondCard = null;
+              lock = false;
+            }, 1000);
+          }
+        }
+      });
+
+      board.appendChild(card);
+    });
+
+    document.getElementById('modal-close').onclick = () => {
+      document.getElementById('modal').style.display = 'none';
+    };
+
+    window.onclick = (event) => {
+      if (event.target === document.getElementById('modal')) {
+        document.getElementById('modal').style.display = 'none';
+      }
+    };
   </script>
-
 </body>
 </html>
