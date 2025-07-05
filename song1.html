@@ -1,53 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>🎵 Happy Birthday - Stevie Wonder</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  body {
-    background: #A0153E;
-    color: gold;
-    font-family: 'Playfair Display', serif;
-    text-align: center;
-    padding: 50px;
-  }
-  h1 {
-    margin-bottom: 20px;
-  }
-  audio {
-    margin: 30px 0;
-    width: 80%;
-    max-width: 500px;
-  }
-  p {
-    font-size: 1.3rem;
-    margin: 20px 0;
-  }
-  a.btn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 25px;
-    background: gold;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 12px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎵 Happy Birthday - Stevie Wonder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #A0153E;
+      color: black;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .player {
+      margin: 40px auto;
+      background: gold;
+      padding: 20px;
+      border-radius: 20px;
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+    }
+    p.message {
+      background: gold;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      max-width: 500px;
+      position: relative;
+      z-index: 2;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 25px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Confetti styles */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: gold;
+      opacity: 0.8;
+      top: -10px;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 1;
+      border-radius: 3px;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Sparkling emoji */
+    #party-emoji {
+      font-size: 3rem;
+      cursor: pointer;
+      margin-top: 20px;
+      display: inline-block;
+      user-select: none;
+      transition: transform 0.3s;
+      position: relative;
+      z-index: 2;
+    }
+    #party-emoji.sparkle {
+      animation: sparkle 1s ease-in-out infinite;
+      transform-origin: center;
+    }
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.3) rotate(20deg); }
+    }
+  </style>
 </head>
 <body>
-  <h1>🎵 Happy Birthday - Stevie Wonder</h1>
-  
-  <audio controls>
-    <source src="song1.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  
-  <p>Anna, this song is just a small reminder of how much you’re loved.  
-  🎂 "Happy Birthday to you!" — may your heart always dance to this tune.</p>
-  
+  <h1>🎵 Happy Birthday - Stevie Wonder 🎵</h1>
+  <div class="player">
+    <audio controls autoplay>
+      <source src="song1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <p class="message">
+    “Happy birthday to you...” 🎶<br>
+    Your special day deserves all the love and joy. Just like this song, I hope every moment today fills your heart with happiness and unforgettable memories! 💖
+  </p>
+
+  <div id="party-emoji" title="Click me for some sparkle!">🎉</div>
+
+  <br>
   <a href="music.html" class="btn">← Back to Playlist</a>
+
+  <script>
+    // Create confetti elements randomly
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 6000);
+    }
+
+    // Create confetti every 300ms while the page is open
+    const confettiInterval = setInterval(createConfetti, 300);
+
+    // Sparkle emoji on click
+    const partyEmoji = document.getElementById('party-emoji');
+    partyEmoji.addEventListener('click', () => {
+      partyEmoji.classList.add('sparkle');
+      setTimeout(() => partyEmoji.classList.remove('sparkle'), 1500);
+    });
+  </script>
 </body>
 </html>
