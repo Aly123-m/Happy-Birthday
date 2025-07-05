@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🎵 Happy Birthday - Stevie Wonder</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       background: #A0153E;
@@ -12,18 +12,15 @@
       font-family: 'Playfair Display', serif;
       text-align: center;
       padding: 30px;
-      overflow-x: hidden;
-      position: relative;
-      transition: background-color 0.5s ease;
     }
     .player {
-      margin: 40px auto 10px;
-      background: transparent;
-      padding: 0;
+      margin: 40px auto;
+      background: gold;
+      padding: 20px;
       border-radius: 20px;
       display: inline-block;
     }
-    .message {
+    p.message {
       background: gold;
       padding: 15px 20px;
       border-radius: 12px;
@@ -31,7 +28,6 @@
       margin-top: 20px;
       font-size: 1.2rem;
       max-width: 500px;
-      color: black;
     }
     a.btn {
       display: inline-block;
@@ -43,226 +39,21 @@
       font-weight: bold;
       border-radius: 12px;
     }
-    #play-btn {
-      font-size: 1.3rem;
-      margin-top: 20px;
-      padding: 10px 25px;
-      border-radius: 12px;
-      background: gold;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      color: black;
-    }
-    #visualizer {
-      margin: 20px auto;
-      width: 300px;
-      height: 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 20px;
-    }
-    .bar {
-      width: 10px;
-      height: 20px;
-      background: gold;
-      border-radius: 5px;
-      transition: height 0.1s ease-out;
-    }
-    #dancing-emoji {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      animation-name: dancePulse;
-      animation-duration: 2s;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-      user-select: none;
-    }
-    @keyframes dancePulse {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.1) rotate(15deg); }
-    }
-    /* Floating balloons */
-    .balloon {
-      position: fixed;
-      bottom: -100px;
-      width: 50px;
-      height: 70px;
-      background: gold;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      opacity: 0.8;
-      animation-name: floatUp;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .balloon::after {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      width: 2px;
-      height: 20px;
-      background: black;
-      transform: translateX(-50%);
-      border-radius: 1px;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-110vh); }
-    }
-    /* Fireworks container */
-    #fireworks {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      overflow: visible;
-      z-index: 100;
-    }
   </style>
 </head>
 <body>
-
   <h1>🎵 Happy Birthday - Stevie Wonder 🎵</h1>
-
   <div class="player">
-    <audio id="audio" preload="auto">
-      <source src="song1.mp3" type="audio/mpeg" />
+    <audio controls autoplay>
+      <source src="song1.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </div>
-
-  <button id="play-btn" aria-label="Play Happy Birthday song">▶ Play Song</button>
-
-  <div id="visualizer" aria-hidden="true">
-    <!-- 32 bars -->
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-  </div>
-
-  <div id="dancing-emoji" aria-hidden="true">🎂🎉</div>
-
-  <p class="message" aria-live="polite">
-    “Happy birthday to you, dear Anna! 🎶<br>
-    May your day be filled with joy, laughter, and all the love you deserve. Here’s to many more amazing years ahead, best friend! ❤️
+  <p class="message">
+    “Happy birthday to you...” 🎂<br>
+    Today’s all about you, my best friend. I hope this song brings a smile that’s as bright and beautiful as your heart. 💖
   </p>
-
+  <br>
   <a href="music.html" class="btn">← Back to Playlist</a>
-
-  <div id="fireworks" aria-hidden="true"></div>
-
-  <script>
-    const audio = document.getElementById('audio');
-    const playBtn = document.getElementById('play-btn');
-    const body = document.body;
-    const bars = document.querySelectorAll('#visualizer .bar');
-    const dancingEmoji = document.getElementById('dancing-emoji');
-    const fireworksContainer = document.getElementById('fireworks');
-
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioCtx = new AudioContext();
-    const source = audioCtx.createMediaElementSource(audio);
-    const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 64;
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-    function animateVisualizer() {
-      analyser.getByteFrequencyData(dataArray);
-      bars.forEach((bar, i) => {
-        let height = dataArray[i] / 4 + 10;
-        height = Math.min(Math.max(height, 10), 60);
-        bar.style.height = height + 'px';
-      });
-
-      // Background color pulse based on average frequency (slight effect)
-      let avg = dataArray.reduce((a,b) => a + b, 0) / dataArray.length;
-      let lightness = 45 + (avg / 255) * 10;  // from 45% to 55%
-      body.style.backgroundColor = `hsl(340, 70%, ${lightness}%)`;
-
-      // Emoji animation speed
-      if(avg > 60) dancingEmoji.style.animationDuration = '0.5s';
-      else if(avg > 30) dancingEmoji.style.animationDuration = '1s';
-      else dancingEmoji.style.animationDuration = '2s';
-
-      requestAnimationFrame(animateVisualizer);
-    }
-
-    function createBalloon() {
-      const balloon = document.createElement('div');
-      balloon.className = 'balloon';
-      balloon.style.left = Math.random() * 95 + 'vw';
-      balloon.style.animationDuration = 8 + Math.random() * 4 + 's';
-      balloon.style.opacity = 0.6 + Math.random() * 0.4;
-      document.body.appendChild(balloon);
-      setTimeout(() => balloon.remove(), 12000);
-    }
-
-    setInterval(createBalloon, 2000);
-
-    function createFirework(x, y) {
-      const colors = ['#FFD700', '#FF69B4', '#FF4500', '#00FFFF', '#FF00FF', '#00FF00'];
-      const count = 30;
-      for(let i = 0; i < count; i++) {
-        const particle = document.createElement('div');
-        particle.style.position = 'fixed';
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        particle.style.width = '6px';
-        particle.style.height = '6px';
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.borderRadius = '50%';
-        particle.style.pointerEvents = 'none';
-        particle.style.zIndex = 110;
-        particle.style.opacity = 1;
-        particle.style.transition = 'transform 700ms ease-out, opacity 700ms ease-out';
-        fireworksContainer.appendChild(particle);
-
-        const angle = Math.random() * 2 * Math.PI;
-        const distance = 50 + Math.random() * 100;
-        const dx = Math.cos(angle) * distance;
-        const dy = Math.sin(angle) * distance;
-
-        setTimeout(() => {
-          particle.style.transform = `translate(${dx}px, ${dy}px)`;
-          particle.style.opacity = 0;
-        }, 10);
-
-        setTimeout(() => {
-          particle.remove();
-        }, 750);
-      }
-    }
-
-    playBtn.insertAdjacentHTML('afterend', '<button id="fireworks-btn" title="Celebrate! 🎉" style="margin-top:10px; font-size:1.5rem; padding: 10px 25px; border-radius: 12px; background: gold; border: none; cursor: pointer;">🎉</button>');
-    const fireworksBtn = document.getElementById('fireworks-btn');
-
-    fireworksBtn.addEventListener('click', (e) => {
-      const rect = fireworksBtn.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top;
-      createFirework(x, y);
-    });
-
-    playBtn.addEventListener('click', () => {
-      if(audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      audio.play();
-      animateVisualizer();
-      playBtn.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
