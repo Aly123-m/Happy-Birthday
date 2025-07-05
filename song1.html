@@ -1,333 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>🎵 Happy Birthday - Stevie Wonder</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
-<style>
-  body {
-    margin: 0; padding: 30px;
-    background: #A0153E;
-    font-family: 'Playfair Display', serif;
-    color: black;
-    text-align: center;
-    overflow-x: hidden;
-    position: relative;
-    transition: background-color 1.5s ease;
-  }
-  h1 {
-    margin-bottom: 30px;
-  }
-  .player {
-    background: gold;
-    border-radius: 20px;
-    padding: 20px;
-    max-width: 480px;
-    margin: 0 auto 20px;
-    position: relative;
-    z-index: 10;
-    display: inline-block;
-  }
-  p.message {
-    background: gold;
-    border-radius: 12px;
-    padding: 20px;
-    max-width: 520px;
-    margin: 20px auto;
-    font-size: 1.2rem;
-    position: relative;
-    z-index: 10;
-  }
-  a.btn {
-    display: inline-block;
-    background: gold;
-    color: black;
-    padding: 12px 30px;
-    border-radius: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-top: 40px;
-    position: relative;
-    z-index: 10;
-  }
-  /* Confetti */
-  .confetti {
-    position: fixed;
-    top: -10px;
-    width: 10px;
-    height: 10px;
-    opacity: 0.85;
-    border-radius: 3px;
-    animation-name: fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    z-index: 1;
-  }
-  @keyframes fall {
-    to {
-      transform: translateY(110vh) rotate(360deg);
-      opacity: 0;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎵 Happy Birthday - Stevie Wonder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: hsl(45, 80%, 55%);
+      color: black;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.5s ease;
     }
-  }
-  /* Sparkles */
-  .sparkle {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.9;
-    animation: sparkleMove 3s linear infinite;
-    z-index: 2;
-  }
-  @keyframes sparkleMove {
-    0% {transform: translateY(0);}
-    100% {transform: translateY(80vh);}
-  }
-  /* Floating Balloons */
-  .balloon {
-    position: fixed;
-    bottom: -150px;
-    width: 40px;
-    height: 60px;
-    background: radial-gradient(circle at 50% 40%, #FFD700, #FFA500);
-    border-radius: 20px 20px 25px 25px;
-    opacity: 0.85;
-    animation-name: floatUp;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    z-index: 1;
-  }
-  @keyframes floatUp {
-    0% { bottom: -150px; transform: rotate(0deg); }
-    50% { transform: rotate(10deg); }
-    100% { bottom: 110vh; transform: rotate(-10deg);}
-  }
-  /* Dancing Emoji */
-  #dancing-emoji {
-    font-size: 4rem;
-    user-select: none;
-    cursor: default;
-    margin-top: 30px;
-    position: relative;
-    z-index: 10;
-    animation: dance 1s ease-in-out infinite;
-  }
-  @keyframes dance {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(-10deg); }
-    50% { transform: translateY(0) rotate(0deg); }
-    75% { transform: translateY(-10px) rotate(10deg); }
-  }
-  /* Visualizer Bars */
-  #visualizer {
-    margin: 30px auto 0;
-    width: 320px;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    max-width: 90vw;
-    position: relative;
-    z-index: 10;
-  }
-  .bar {
-    background: gold;
-    width: 15px;
-    border-radius: 5px;
-    transition: height 0.1s ease-out;
-  }
-  /* Fireworks container */
-  #fireworks-container {
-    pointer-events: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 20;
-    overflow: visible;
-  }
-</style>
+    .player {
+      margin: 40px auto 10px;
+      background: gold;
+      padding: 20px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .message {
+      background: gold;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      max-width: 500px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 25px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+    }
+    #play-btn {
+      font-size: 1.3rem;
+      margin-top: 20px;
+      padding: 10px 25px;
+      border-radius: 12px;
+      background: gold;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      color: black;
+    }
+    #visualizer {
+      margin: 20px auto;
+      width: 300px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+    .bar {
+      width: 10px;
+      height: 20px;
+      background: black;
+      border-radius: 5px;
+      transition: height 0.1s ease-out;
+    }
+    #dancing-emoji {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      animation-name: dancePulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      user-select: none;
+    }
+    @keyframes dancePulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(15deg); }
+    }
+    /* Floating balloons */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 50px;
+      height: 70px;
+      background: gold;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.8;
+      animation-name: floatUp;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: black;
+      transform: translateX(-50%);
+      border-radius: 1px;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-110vh); }
+    }
+    /* Fireworks container */
+    #fireworks {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 100;
+    }
+  </style>
 </head>
 <body>
 
   <h1>🎵 Happy Birthday - Stevie Wonder 🎵</h1>
-  
+
   <div class="player">
-    <audio id="audio" controls autoplay>
+    <audio id="audio" controls>
       <source src="song1.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
+  <button id="play-btn">▶ Play Song</button>
+
   <div id="visualizer">
-    <div class="bar" style="height:10px"></div>
-    <div class="bar" style="height:20px"></div>
-    <div class="bar" style="height:15px"></div>
-    <div class="bar" style="height:25px"></div>
-    <div class="bar" style="height:18px"></div>
-    <div class="bar" style="height:22px"></div>
-    <div class="bar" style="height:16px"></div>
-    <div class="bar" style="height:20px"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
   </div>
 
+  <div id="dancing-emoji">🎂🎉</div>
+
   <p class="message">
-    “Happy birthday to you...” 🎶<br />
-    Your special day deserves all the love and joy. Just like this song, I hope every moment today fills your heart with happiness and unforgettable memories! 💖
+    “Happy birthday to you, dear Anna! 🎶<br>
+    May your day be filled with joy, laughter, and all the love you deserve. Here’s to many more amazing years ahead, best friend! ❤️
   </p>
-
-  <div id="dancing-emoji" aria-label="Dancing music emoji" title="Let's dance!">🕺</div>
-
-  <button id="fireworks-btn" aria-label="Celebrate with fireworks" title="Click to celebrate! 🎉" style="
-    margin-top: 30px;
-    font-size: 2rem;
-    background: gold;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: black;
-    position: relative;
-    z-index: 10;
-  ">🎉 Celebrate!</button>
 
   <a href="music.html" class="btn">← Back to Playlist</a>
 
-  <div id="fireworks-container"></div>
+  <div id="fireworks"></div>
 
-<script>
-  const audio = document.getElementById('audio');
-  const bars = document.querySelectorAll('#visualizer .bar');
-  const body = document.body;
-  const fireworksContainer = document.getElementById('fireworks-container');
-  const fireworksBtn = document.getElementById('fireworks-btn');
-  const dancingEmoji = document.getElementById('dancing-emoji');
+  <script>
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play-btn');
+    const body = document.body;
+    const bars = document.querySelectorAll('#visualizer .bar');
+    const dancingEmoji = document.getElementById('dancing-emoji');
+    const fireworksContainer = document.getElementById('fireworks');
 
-  // === Confetti creation ===
-  function createConfetti() {
-    const confetti = document.createElement('div');
-    confetti.classList.add('confetti');
-    confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
-    confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
-    document.body.appendChild(confetti);
+    // Setup Web Audio API
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    const source = audioCtx.createMediaElementSource(audio);
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 64;
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    setTimeout(() => confetti.remove(), 6000);
-  }
-  setInterval(createConfetti, 300);
+    function animateVisualizer() {
+      analyser.getByteFrequencyData(dataArray);
+      bars.forEach((bar, i) => {
+        let height = dataArray[i] / 4 + 10;
+        height = Math.min(Math.max(height, 10), 60);
+        bar.style.height = height + 'px';
+      });
 
-  // === Sparkles creation ===
-  function createSparkle() {
-    const sparkle = document.createElement('div');
-    sparkle.classList.add('sparkle');
-    sparkle.style.left = Math.random() * 100 + 'vw';
-    sparkle.style.top = Math.random() * 60 + 'vh';
-    sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
-    sparkle.style.opacity = Math.random() * 0.7 + 0.3;
-    document.body.appendChild(sparkle);
+      // Background color pulse based on average frequency
+      let avg = dataArray.reduce((a,b) => a + b, 0) / dataArray.length;
+      let hue = 45 + (avg / 255) * 40;  // yellow range
+      body.style.backgroundColor = `hsl(${hue}, 80%, 55%)`;
 
-    setTimeout(() => sparkle.remove(), 4000);
-  }
-  setInterval(createSparkle, 400);
+      // Emoji animation speed
+      if(avg > 60) dancingEmoji.style.animationDuration = '0.5s';
+      else if(avg > 30) dancingEmoji.style.animationDuration = '1s';
+      else dancingEmoji.style.animationDuration = '2s';
 
-  // === Balloons creation ===
-  function createBalloon() {
-    const balloon = document.createElement('div');
-    balloon.classList.add('balloon');
-    balloon.style.left = Math.random() * 100 + 'vw';
-    balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
-    document.body.appendChild(balloon);
+      requestAnimationFrame(animateVisualizer);
+    }
 
-    setTimeout(() => balloon.remove(), 10000);
-  }
-  setInterval(createBalloon, 3500);
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * 95 + 'vw';
+      balloon.style.animationDuration = 8 + Math.random() * 4 + 's';
+      balloon.style.opacity = 0.6 + Math.random() * 0.4;
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 12000);
+    }
 
-  // === Audio Visualizer ===
-  // Setup Web Audio API
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  const source = audioCtx.createMediaElementSource(audio);
-  const analyser = audioCtx.createAnalyser();
-  analyser.fftSize = 64;
-  source.connect(analyser);
-  analyser.connect(audioCtx.destination);
+    // Create balloons continuously
+    setInterval(createBalloon, 2000);
 
-  const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    // Fireworks effect
+    function createFirework(x, y) {
+      const colors = ['#FFD700', '#FF69B4', '#FF4500', '#00FFFF', '#FF00FF', '#00FF00'];
+      const count = 30;
+      for(let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.width = '6px';
+        particle.style.height = '6px';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = 110;
+        particle.style.opacity = 1;
+        particle.style.transition = 'transform 700ms ease-out, opacity 700ms ease-out';
+        fireworksContainer.appendChild(particle);
 
-  function animateVisualizer() {
-    analyser.getByteFrequencyData(dataArray);
-    bars.forEach((bar, i) => {
-      // Scale height from 10 to 60 based on frequency data
-      let height = dataArray[i] / 4 + 10;
-      if(height < 10) height = 10;
-      if(height > 60) height = 60;
-      bar.style.height = height + 'px';
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = 50 + Math.random() * 100;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        setTimeout(() => {
+          particle.style.transform = `translate(${dx}px, ${dy}px)`;
+          particle.style.opacity = 0;
+        }, 10);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 750);
+      }
+    }
+
+    // Add fireworks button
+    playBtn.insertAdjacentHTML('afterend', '<button id="fireworks-btn" title="Celebrate! 🎉" style="margin-top:10px; font-size:1.5rem; padding: 10px 25px; border-radius: 12px; background: gold; border: none; cursor: pointer;">🎉</button>');
+    const fireworksBtn = document.getElementById('fireworks-btn');
+
+    fireworksBtn.addEventListener('click', (e) => {
+      const rect = fireworksBtn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top;
+      createFirework(x, y);
     });
 
-    // Change background color softly based on average volume
-    let avg = dataArray.reduce((a,b) => a + b, 0) / dataArray.length;
-    let hue = 340 + (avg / 255) * 40; // from pinkish-red to lighter red
-    body.style.backgroundColor = `hsl(${hue}, 70%, 45%)`;
-
-    // Dancing emoji speed changes with avg volume
-    if(avg > 60) {
-      dancingEmoji.style.animationDuration = '0.5s';
-    } else if (avg > 30) {
-      dancingEmoji.style.animationDuration = '1s';
-    } else {
-      dancingEmoji.style.animationDuration = '2s';
-    }
-
-    requestAnimationFrame(animateVisualizer);
-  }
-  audio.onplay = () => {
-    // Resume audio context on interaction
-    if(audioCtx.state === 'suspended') audioCtx.resume();
-    animateVisualizer();
-  };
-
-  // === Fireworks effect ===
-  function createFirework(x, y) {
-    const firework = document.createElement('div');
-    firework.style.position = 'absolute';
-    firework.style.left = x + 'px';
-    firework.style.top = y + 'px';
-    firework.style.width = '15px';
-    firework.style.height = '15px';
-    firework.style.borderRadius = '50%';
-    firework.style.background = 'gold';
-    firework.style.boxShadow = '0 0 10px 3px gold, 0 0 20px 6px orange';
-    firework.style.opacity = '1';
-    fireworksContainer.appendChild(firework);
-
-    let angle = 0;
-    let distance = 0;
-
-    const explode = () => {
-      distance += 5;
-      angle += Math.PI / 6;
-      firework.style.left = x + distance * Math.cos(angle) + 'px';
-      firework.style.top = y + distance * Math.sin(angle) + 'px';
-      firework.style.opacity -= 0.05;
-      if(firework.style.opacity <= 0) {
-        firework.remove();
-      } else {
-        requestAnimationFrame(explode);
+    playBtn.addEventListener('click', () => {
+      if(audioCtx.state === 'suspended') {
+        audioCtx.resume();
       }
-    };
-    explode();
-  }
-
-  fireworksBtn.addEventListener('click', (e) => {
-    const rect = fireworksBtn.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    for(let i = 0; i < 12; i++) {
-      createFirework(centerX, centerY);
-    }
-  });
-</script>
-
+      audio.play();
+      animateVisualizer();
+      playBtn.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
 
