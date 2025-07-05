@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🎵 Happy Birthday - Stevie Wonder</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      background: hsl(45, 80%, 55%);
+      background: #A0153E;
       color: black;
       font-family: 'Playfair Display', serif;
       text-align: center;
@@ -18,8 +18,8 @@
     }
     .player {
       margin: 40px auto 10px;
-      background: gold;
-      padding: 20px;
+      background: transparent;
+      padding: 0;
       border-radius: 20px;
       display: inline-block;
     }
@@ -31,6 +31,7 @@
       margin-top: 20px;
       font-size: 1.2rem;
       max-width: 500px;
+      color: black;
     }
     a.btn {
       display: inline-block;
@@ -65,7 +66,7 @@
     .bar {
       width: 10px;
       height: 20px;
-      background: black;
+      background: gold;
       border-radius: 5px;
       transition: height 0.1s ease-out;
     }
@@ -129,15 +130,16 @@
   <h1>🎵 Happy Birthday - Stevie Wonder 🎵</h1>
 
   <div class="player">
-    <audio id="audio" controls>
+    <audio id="audio" preload="auto">
       <source src="song1.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
-  <button id="play-btn">▶ Play Song</button>
+  <button id="play-btn" aria-label="Play Happy Birthday song">▶ Play Song</button>
 
-  <div id="visualizer">
+  <div id="visualizer" aria-hidden="true">
+    <!-- 32 bars -->
     <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -148,16 +150,16 @@
     <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
   </div>
 
-  <div id="dancing-emoji">🎂🎉</div>
+  <div id="dancing-emoji" aria-hidden="true">🎂🎉</div>
 
-  <p class="message">
+  <p class="message" aria-live="polite">
     “Happy birthday to you, dear Anna! 🎶<br>
     May your day be filled with joy, laughter, and all the love you deserve. Here’s to many more amazing years ahead, best friend! ❤️
   </p>
 
   <a href="music.html" class="btn">← Back to Playlist</a>
 
-  <div id="fireworks"></div>
+  <div id="fireworks" aria-hidden="true"></div>
 
   <script>
     const audio = document.getElementById('audio');
@@ -167,7 +169,6 @@
     const dancingEmoji = document.getElementById('dancing-emoji');
     const fireworksContainer = document.getElementById('fireworks');
 
-    // Setup Web Audio API
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioCtx = new AudioContext();
     const source = audioCtx.createMediaElementSource(audio);
@@ -185,10 +186,10 @@
         bar.style.height = height + 'px';
       });
 
-      // Background color pulse based on average frequency
+      // Background color pulse based on average frequency (slight effect)
       let avg = dataArray.reduce((a,b) => a + b, 0) / dataArray.length;
-      let hue = 45 + (avg / 255) * 40;  // yellow range
-      body.style.backgroundColor = `hsl(${hue}, 80%, 55%)`;
+      let lightness = 45 + (avg / 255) * 10;  // from 45% to 55%
+      body.style.backgroundColor = `hsl(340, 70%, ${lightness}%)`;
 
       // Emoji animation speed
       if(avg > 60) dancingEmoji.style.animationDuration = '0.5s';
@@ -208,10 +209,8 @@
       setTimeout(() => balloon.remove(), 12000);
     }
 
-    // Create balloons continuously
     setInterval(createBalloon, 2000);
 
-    // Fireworks effect
     function createFirework(x, y) {
       const colors = ['#FFD700', '#FF69B4', '#FF4500', '#00FFFF', '#FF00FF', '#00FF00'];
       const count = 30;
@@ -246,7 +245,6 @@
       }
     }
 
-    // Add fireworks button
     playBtn.insertAdjacentHTML('afterend', '<button id="fireworks-btn" title="Celebrate! 🎉" style="margin-top:10px; font-size:1.5rem; padding: 10px 25px; border-radius: 12px; background: gold; border: none; cursor: pointer;">🎉</button>');
     const fireworksBtn = document.getElementById('fireworks-btn');
 
@@ -268,4 +266,3 @@
   </script>
 </body>
 </html>
-
