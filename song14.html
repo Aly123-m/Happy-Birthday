@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Don’t Stop the Music - Rihanna</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  body {
-    background: #A0153E;
-    color: black;
-    font-family: 'Playfair Display', serif;
-    text-align: center;
-    padding: 30px;
-  }
-  audio {
-    margin: 20px 0;
-  }
-  .btn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 25px;
-    background: gold;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 12px;
-    transition: background 0.3s, transform 0.2s;
-  }
-  .btn:hover {
-    background: rgba(0,0,0,0.2);
-    transform: scale(1.05);
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎵 Don't Stop the Music - Rihanna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #A0153E;
+      color: black;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      padding: 30px;
+    }
+    .player {
+      margin: 40px auto;
+      background: gold;
+      padding: 20px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    p.message {
+      background: gold;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      max-width: 500px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 25px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎶 Don’t Stop the Music - Rihanna</h1>
-  <audio controls>
-    <source src="song14.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <p>This song perfectly matches your unstoppable spirit. Just like Rihanna says, never stop the music — keep dancing, laughing, and living your best life every single day. Your energy lights up every room! 💃🎶</p>
-
+  <h1>🎵 Don't Stop the Music - Rihanna 🎵</h1>
+  <div class="player">
+    <audio controls autoplay>
+      <source src="song14.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <p class="message">
+    “Please don’t stop the music...” 🎧<br>
+    Because with you, every day feels like a song that I never want to end. Let’s keep dancing through life together, no matter the beat. 💃
+  </p>
+  <br>
   <a href="music.html" class="btn">← Back to Playlist</a>
 </body>
 </html>
