@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Party in the U.S.A. - Miley Cyrus</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  body {
-    background: #A0153E;
-    color: black;
-    font-family: 'Playfair Display', serif;
-    text-align: center;
-    padding: 30px;
-  }
-  audio {
-    margin: 20px 0;
-  }
-  .btn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 25px;
-    background: gold;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 12px;
-    transition: background 0.3s, transform 0.2s;
-  }
-  .btn:hover {
-    background: rgba(0,0,0,0.2);
-    transform: scale(1.05);
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎵 Party in the U.S.A. - Miley Cyrus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #A0153E;
+      color: black;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      padding: 30px;
+    }
+    .player {
+      margin: 40px auto;
+      background: gold;
+      padding: 20px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    p.message {
+      background: gold;
+      padding: 15px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      max-width: 500px;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 25px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎶 Party in the U.S.A. - Miley Cyrus</h1>
-  <audio controls>
-    <source src="song13.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <p>This song reminds me of how exciting new beginnings are — just like stepping into this amazing new chapter of your life. Always remember to keep shining and celebrating every moment. It’s your party, after all! 🎉✨</p>
-
+  <h1>🎵 Party in the U.S.A. - Miley Cyrus 🎵</h1>
+  <div class="player">
+    <audio controls autoplay>
+      <source src="song13.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <p class="message">
+    “So I put my hands up, they’re playing my song...” 🎶<br>
+    Just like Miley, I hope you always dance like nobody’s watching and live every moment like it’s your own personal party. You make life a celebration!
+  </p>
+  <br>
   <a href="music.html" class="btn">← Back to Playlist</a>
 </body>
 </html>
