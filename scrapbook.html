@@ -3,31 +3,95 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scrapbook</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<title>🎉 Birthday Carousel</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #A0153E;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  .carousel {
+    background: gold;
+    padding: 20px;
+    border-radius: 15px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  .carousel h2 {
+    margin-bottom: 15px;
+  }
+  .carousel img {
+    width: 100%;
+    border-radius: 10px;
+    user-select: none;
+  }
+  .buttons {
+    margin-top: 15px;
+  }
+  .buttons button {
+    background: #A0153E;
+    color: gold;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .buttons button:hover {
+    background: #7B0F2A;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>📷 Scrapbook</h1>
-    <p>Memories go here!</p>
-    <a href="index.html" class="btn">← Back Home</a>
+
+<div class="carousel">
+  <h2>🎂 Happy Birthday, Anna! 🎂</h2>
+  <img id="carousel-image" src="images/cake1.png" alt="Birthday Image" />
+  <div class="buttons">
+    <button id="prev">← Prev</button>
+    <button id="next">Next →</button>
   </div>
+</div>
 
-  <footer>Made with ❤️ for Anna’s 18th birthday.</footer>
+<script>
+  const images = [
+    "images/cake1.png",
+    "images/cake2.png",
+    "images/cake3.png",
+    "images/cake4.png",
+    "images/cake5.png"
+  ];
 
-  <script>
-    function createSparkle() {
-      const sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      sparkle.style.left = Math.random() * 100 + 'vw';
-      sparkle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-      sparkle.style.animationDuration = (2 + Math.random() * 3) + 's';
-      document.body.appendChild(sparkle);
+  let currentIndex = 0;
+  const imgElement = document.getElementById('carousel-image');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
 
-      setTimeout(() => sparkle.remove(), 5000);
-    }
-    setInterval(createSparkle, 300);
-  </script>
+  function updateImage() {
+    imgElement.src = images[currentIndex];
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+
+  // Initialize first image
+  updateImage();
+</script>
+
 </body>
 </html>
