@@ -1,108 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>🎉 Birthday Carousel</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #A0153E;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-  }
-  .carousel {
-    background: gold;
-    padding: 20px;
-    border-radius: 15px;
-    width: 320px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
-  .carousel h2 {
-    margin-bottom: 15px;
-  }
-  .carousel img {
-    width: 100%;
-    border-radius: 10px;
-    user-select: none;
-  }
-  .buttons {
-    margin-top: 15px;
-  }
-  .buttons button {
-    background: #A0153E;
-    color: gold;
-    border: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .buttons button:hover {
-    background: #7B0F2A;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎂 Happy Birthday Carousel</title>
+  <style>
+    body {
+      background: #FFF4F4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #A0153E;
+    }
+
+    .carousel img {
+      width: 300px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* soft shadow */
+      transition: transform 0.3s ease;
+    }
+
+    .carousel img:hover {
+      transform: scale(1.02);
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #A0153E;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #7c102f;
+    }
+
+    .back-home {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: gold;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+
+    .back-home:hover {
+      background-color: #e2c100;
+    }
+  </style>
 </head>
 <body>
 
-<div class="carousel">
-  <h2>🎂 Happy Birthday, Anna! 🎂</h2>
-  <img id="carousel-image" src="images/cake1.png" alt="Birthday Image" />
-  <div class="buttons">
-    <button id="prev">← Prev</button>
-    <button id="next">Next →</button>
+  <div class="carousel">
+    <h2>🎂 Happy Birthday, Anna! 🎂</h2>
+    <img id="carousel-image" src="images/birthday1.png" alt="Birthday Image" />
+    <div class="buttons">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
   </div>
-</div>
 
-<script>
-  const images = [
-    "images/birthday1.png",
-    "images/birthday2.png",
-    "images/birthday3.png",
-    "images/birthday4.png",
-    "images/birthday5.png",
-    "images/birthday6.png",
-    "images/birthday7.png",
-    "images/birthday8.png",
-    "images/birthday9.png",
-    "images/birthday10.png",
-    "images/birthday11.png",
-    "images/birthday12.png",
-    "images/birthday13.png",
-    "images/birthday14.png",
-    "images/birthday15.png",
-    "images/birthday16.png",
-  ];
+  <a href="index.html" class="back-home">← Back to Home</a>
 
-  let currentIndex = 0;
-  const imgElement = document.getElementById('carousel-image');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
+  <script>
+    const images = [
+      "images/birthday1.png",
+      "images/birthday2.png",
+      "images/birthday3.png",
+      "images/birthday4.png",
+      "images/birthday5.png",
+      "images/birthday6.png",
+      "images/birthday7.png",
+      "images/birthday8.png",
+      "images/birthday9.png",
+      "images/birthday10.png",
+      "images/birthday11.png",
+      "images/birthday12.png",
+      "images/birthday13.png",
+      "images/birthday14.png",
+      "images/birthday15.png",
+      "images/birthday16.png"
+    ];
 
-  function updateImage() {
-    imgElement.src = images[currentIndex];
-  }
+    let currentIndex = 0;
+    const imgElement = document.getElementById('carousel-image');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
 
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    function updateImage() {
+      imgElement.src = images[currentIndex];
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateImage();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImage();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "ArrowLeft") {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+      } else if (e.key === "ArrowRight") {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+      }
+    });
+
     updateImage();
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  });
-
-  // Initialize first image
-  updateImage();
-</script>
+  </script>
 
 </body>
 </html>
