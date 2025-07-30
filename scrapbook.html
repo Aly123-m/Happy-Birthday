@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>🎂 Happy Birthday Carousel</title>
   <style>
     body {
-      background: #FFF4F4;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff4f4;
+      font-family: Arial, sans-serif;
       text-align: center;
       padding: 30px;
     }
 
     h2 {
+      color: #a0153e;
       font-size: 2em;
-      color: #A0153E;
     }
 
-    .carousel img {
+    #carousel-image {
       width: 300px;
-      height: auto;
       border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* soft shadow */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* soft shadow */
       transition: transform 0.3s ease;
     }
 
-    .carousel img:hover {
+    #carousel-image:hover {
       transform: scale(1.02);
     }
 
@@ -35,22 +33,22 @@
 
     button {
       padding: 10px 20px;
-      margin: 0 10px;
-      font-size: 1rem;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #a0153e;
+      color: white;
       border: none;
       border-radius: 8px;
-      background-color: #A0153E;
-      color: white;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #7c102f;
+      background-color: #7a102f;
     }
 
     .back-home {
-      margin-top: 40px;
       display: inline-block;
+      margin-top: 40px;
       padding: 10px 20px;
       background-color: gold;
       color: black;
@@ -68,7 +66,7 @@
 
   <div class="carousel">
     <h2>🎂 Happy Birthday, Anna! 🎂</h2>
-    <img id="carousel-image" src="images/birthday1.png" alt="Birthday Image" />
+    <img id="carousel-image" src="images/birthday1.png" alt="Birthday Image">
     <div class="buttons">
       <button id="prev">← Prev</button>
       <button id="next">Next →</button>
@@ -98,25 +96,25 @@
     ];
 
     let currentIndex = 0;
-    const imgElement = document.getElementById('carousel-image');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
+    const imgElement = document.getElementById("carousel-image");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
 
     function updateImage() {
       imgElement.src = images[currentIndex];
     }
 
-    prevBtn.addEventListener('click', () => {
+    prevBtn.addEventListener("click", () => {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       updateImage();
     });
 
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener("click", () => {
       currentIndex = (currentIndex + 1) % images.length;
       updateImage();
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateImage();
